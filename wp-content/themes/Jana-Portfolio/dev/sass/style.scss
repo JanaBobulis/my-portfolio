@@ -1,6 +1,14 @@
 // TODO: Take all fonts down 'a couple of pixels to match the top'
 
-@import "./modules/variables";
-@import "./modules/aos.min";
+// @import "./modules/variables";
+// @import "./modules/aos.min";
 // @import "./modules/content-rows";
+
+@import "./components/header";
+
+.site-bounds {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
 

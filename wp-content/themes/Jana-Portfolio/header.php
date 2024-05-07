@@ -50,17 +50,19 @@
   <link rel='stylesheet' id='customStyle' href='<?php echo get_template_directory_uri(); ?>/style.css' media=" print"
     onload="this.media='all'" />
 
-  <?php include (TEMPLATEPATH . '/criticalCSS.php'); ?>
+    <!-- <link rel="stylesheet" href="./dist/style.css"> -->
+
+  <!-- <?php include (TEMPLATEPATH . '/criticalCSS.php'); ?> -->
 
 
   <!-- PRELOADS -->
 
 <body <?php body_class(); ?>>
-  <!-- wrapper -->
-  <div class="wrapper">
 
    <!-- header -->
    <header role="banner" class="header show-me">
-      
-    </header>
+      <div class="header-inner site-bounds">
+        <nav><?php echo main_nav(); ?></nav>
+      </div>
+  </header>
     <!-- /header -->
