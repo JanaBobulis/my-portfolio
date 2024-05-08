@@ -6,8 +6,48 @@
   background-color: plum;
 }
 
+.hero .hero-inner .hero-copy, .hero .hero-inner .hero-image {
+  flex: 0 0 50%;
+}
+
+.my-work-inner .col-left, .my-work-inner .col-right {
+  flex: 0 0 50%;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  line-height: 26px;
+  font-weight: 400;
+  font-style: normal;
+  color: black;
+}
+
+html {
+  margin-top: 0 !important;
+}
+
+img,
+picture,
+source {
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  -o-object-fit: cover;
+  object-fit: cover;
+  -o-object-position: center;
+  object-position: center;
+}
+
 .site-bounds {
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 20px;
+}
+
+img {
+  width: 100%;
+  height: auto;
 }

@@ -5,10 +5,43 @@
 // @import "./modules/content-rows";
 
 @import "./components/header";
+@import "./components/hero";
+@import "./components/my-work";
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    line-height: 26px;
+    font-weight: 400;
+    font-style: normal;
+    color: black;
+    // font-family: $font;
+  }
+  
+  html {
+    margin-top: 0 !important;
+  }
+  
+  img,
+  picture,
+  source {
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+  }
 
 .site-bounds {
     max-width: 1280px;
     margin: 0 auto;
     padding: 0 20px;
+}
+
+img {
+    width: 100%;
+    height: auto;
 }
 

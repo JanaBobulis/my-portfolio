@@ -16,9 +16,10 @@
 get_header(); ?>
 
 <main id="primary" class="wrapper content-area front-page" role="main">
-    <div class="content-rows site-bounds">
-        <section id="sectionOne">About me</section>
-        <section id="sectionTwo">My Work</section>
+
+<div class="content-rows site-bounds">
+        <?php get_template_part( '/components/hero' ); ?>
+        <?php get_template_part( '/components/my-work' ); ?>
         <section id="mySkills">My Skills</section>
         <section id="sectionThree">Contact</section>
     </div>

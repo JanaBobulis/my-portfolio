@@ -1,6 +1,15 @@
+/*
+!/wp-content
+/wp-content/*
+!/wp-content/themes
+/wp-content/themes/*
+!/wp-content/themes/Jana-Portfolio
+
 node_modules
 package.json
 package-lock.json
 !gulpfile.js
+
+
 
 

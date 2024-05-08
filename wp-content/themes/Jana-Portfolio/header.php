@@ -61,7 +61,7 @@
 
    <!-- header -->
    <header role="banner" class="header show-me">
-      <div class="header-inner site-bounds">
+      <div class="header-inner site-bounds d-flex justify-content-start">
         <nav><?php echo main_nav(); ?></nav>
       </div>
   </header>
