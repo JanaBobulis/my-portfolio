@@ -1,1 +1,1 @@
-"use strict";jQuery;
+"use strict";!function(e,n,o){e(window).scroll(function(){e(window).scrollTop()>=100?e(".header").addClass("scrolled"):e(".header").removeClass("scrolled")})}(jQuery);var lenis=new Lenis({lerp:.1,smooth:!0,direction:"vertical"});function raf(e){lenis.raf(e),requestAnimationFrame(raf)}lenis.on("scroll",function(e){console.log(e)}),requestAnimationFrame(raf);

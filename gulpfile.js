@@ -1,6 +1,7 @@
-const gulp = require("gulp")
-const babel = require("gulp-babel")
-const minify = require("gulp-minify")
+import gulp from 'gulp'
+import babel from 'gulp-babel'
+import minify from 'gulp-minify'
+
 
 gulp.task("babel", () => {
  return gulp
@@ -15,10 +16,16 @@ gulp.task("babel", () => {
 })
 
 //SASS
-const sass = require("gulp-sass")(require("sass"))
-const autoprefixer = require("gulp-autoprefixer")
-const cleanCSS = require("gulp-clean-css")
-const sourcemaps = require("gulp-sourcemaps")
+// import sass from 'sass'
+// import {gulp-sass, sass} from 'sass'
+import dartSass from 'sass';
+import gulpSass from 'gulp-sass';
+const sass = gulpSass(dartSass);
+import autoprefixer from 'gulp-autoprefixer'
+import cleanCSS from 'gulp-clean-css'
+import sourcemaps from 'gulp-sourcemaps'
+
+// const sass = require("gulp-sass")(require("sass"))
 
 gulp.task("sass", () => {
  return (
@@ -35,8 +42,8 @@ gulp.task("sass", () => {
 })
 
 
-var rename = require("gulp-rename")
-var concat = require("gulp-concat-util")
+import rename from 'gulp-rename'
+import concat from 'gulp-concat-util'
 
 gulp.task("styles:critical", function () {
  return (

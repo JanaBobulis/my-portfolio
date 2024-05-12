@@ -13,11 +13,12 @@
  */
 
 
+
 get_header(); ?>
 
 <main id="primary" class="wrapper content-area front-page" role="main">
 
-<div class="content-rows site-bounds">
+<div class="content-rows site-bounds content">
         <?php get_template_part( '/components/hero' ); ?>
         <?php get_template_part( '/components/my-work' ); ?>
         <section id="mySkills">My Skills</section>

@@ -158,21 +158,20 @@ function my_theme_enqueue_styles() {
 function html5blank_header_scripts() {
   if ($GLOBALS['pagenow'] != 'wp-login.php' && !is_admin()) {
 
-    wp_register_script('conditionizr', get_template_directory_uri() . '/js/lib/conditionizr-4.3.0.min.js', array(), '4.3.0'); // Conditionizr
-    wp_enqueue_script('conditionizr'); // Enqueue it!
-
-    wp_register_script('countUp', get_template_directory_uri() . '/js/lib/jquery.countup.min.js', array( 'jquery' ), false, true );
-    wp_enqueue_script('countUp'); // Enqueue it!
-
-    wp_register_script('waypoints', get_template_directory_uri() . '/js/lib/jquery.waypoints.js', array( 'jquery' ), false, true );
-    wp_enqueue_script('waypoints'); // Enqueue it!
-
     wp_register_script('bootstrap-popper', 'https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js', array('jquery')); // Custom scripts
     wp_enqueue_script('bootstrap-popper'); // Enqueue it!
 
     wp_register_script('bootstrap-script', 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js', array('jquery')); // Custom scripts
     wp_enqueue_script('bootstrap-script'); // Enqueue it!
 
+    wp_register_script('lenis', 'https://unpkg.com/lenis@1.0.45/dist/lenis.min.js', array('jquery')); // Custom scripts
+    wp_enqueue_script('lenis'); // Enqueue it!
+
+    wp_register_script('gsap', get_template_directory_uri() . '/js/lib/gsap/gsap.min.js', array('jquery'));
+    wp_enqueue_script('gsap');
+
+    wp_register_script('scrollTrigger', get_template_directory_uri() . '/js/lib/gsap/ScrollTrigger.min.js', array('jquery'));
+    wp_enqueue_script('scrollTrigger'); // Enqueue it!
 
 
 
@@ -187,9 +186,6 @@ function html5blank_header_scripts() {
     wp_register_script('slb', get_template_directory_uri() . '/js/lib/simpleLightbox.min.js', array('jquery'));
     //TODO check before final testing if theres only one modal video on the site (homepage), if so move this enqueue to homepage
     wp_enqueue_script('slb'); // Enqueue it!
-
-    wp_register_script('aosJs', get_template_directory_uri() . '/js/lib/aos.min.js', array('jquery')); 
-    wp_enqueue_script('aosJs');
 
     wp_register_script('customScripts', get_template_directory_uri() . '/js/scripts-min.js', array('jquery')); // Custom scripts
     wp_enqueue_script('customScripts'); // Enqueue it!
@@ -216,15 +212,12 @@ function html5blank_header_scripts() {
         GSAP
       \*------------------------------------*/
     
-      wp_register_script('gsap', get_template_directory_uri() . '/js/lib/gsap/gsap.min.js', array('jquery'));
-      wp_enqueue_script('gsap');
-      wp_register_script('lenis', 'https://unpkg.com/@studio-freight/lenis@1.0.39/dist/lenis.min.js', array('jquery')); // Custom scripts
-      wp_enqueue_script('lenis'); // Enqueue it!
+
+
 
       // wp_register_script('drawSVG', get_template_directory_uri() . '/js/lib/gsap/DrawSVGPlugin.min.js', array('jquery')); 
       // wp_enqueue_script('drawSVG'); // Enqueue it!
-      wp_register_script('scrollTrigger', get_template_directory_uri() . '/js/lib/gsap/ScrollTrigger.min.js', array('jquery'));
-      wp_enqueue_script('scrollTrigger'); // Enqueue it!
+   
       wp_register_script('ScrollTo', get_template_directory_uri() . '/js/lib/gsap/ScrollToPlugin.min.js', array('jquery'));
 
 
@@ -602,22 +595,22 @@ add_shortcode( 'html5_shortcode_demo_2', 'html5_shortcode_demo_2' ); // Place [h
 //** */
 if( function_exists('acf_add_options_page') ) {
 	
-	// acf_add_options_page(array(
-	// 	'page_title' 	=> 'Theme Settings',
-	// 	'menu_title'	=> 'Theme Settings',
-	// 	'menu_slug' 	=> 'theme-general-settings',
-	// 	'capability'	=> 'edit_posts',
-	// 	'redirect'		=> false
-	// ));
-	// acf_add_options_page(array(
-	// 	'page_title' 	=> 'Pipeline Data',
-	// 	'menu_title'	=> 'Pipeline Data',
-	// 	'menu_slug' 	=> 'pipeline-data',
-  //   'position'    => 7,
-	// 	'capability'	=> 'edit_posts',
-	// 	'redirect'		=> false,
-  //   'icon_url' => 'dashicons-images-alt2', // Add this line and replace the second inverted commas with class of the icon you like
-	// ));
+	acf_add_options_page(array(
+		'page_title' 	=> 'Theme Settings',
+		'menu_title'	=> 'Theme Settings',
+		'menu_slug' 	=> 'theme-general-settings',
+		'capability'	=> 'edit_posts',
+		'redirect'		=> false
+	));
+	acf_add_options_page(array(
+		'page_title' 	=> 'Pipeline Data',
+		'menu_title'	=> 'Pipeline Data',
+		'menu_slug' 	=> 'pipeline-data',
+    'position'    => 7,
+		'capability'	=> 'edit_posts',
+		'redirect'		=> false,
+    'icon_url' => 'dashicons-images-alt2', // Add this line and replace the second inverted commas with class of the icon you like
+	));
 	
 }
 
@@ -780,120 +773,6 @@ function filter_search($query) {
 }
 add_filter('pre_get_posts','filter_search');
 
-
-// Register Custom Post Type
-function team_member() {
-
-	$labels = array(
-		'name'                  => _x( 'Team Members', 'Post Type General Name', 'team_member' ),
-		'singular_name'         => _x( 'Team Member', 'Post Type Singular Name', 'team_member' ),
-		'menu_name'             => __( 'Team Members', 'team_member' ),
-		'name_admin_bar'        => __( 'Team Members', 'team_member' ),
-		'archives'              => __( 'Item Archives', 'team_member' ),
-		'attributes'            => __( 'Item Attributes', 'team_member' ),
-		'parent_item_colon'     => __( 'Parent Item:', 'team_member' ),
-		'all_items'             => __( 'All Items', 'team_member' ),
-		'add_new_item'          => __( 'Add New Item', 'team_member' ),
-		'add_new'               => __( 'Add New Team Member', 'team_member' ),
-		'new_item'              => __( 'New Team Member', 'team_member' ),
-		'edit_item'             => __( 'Edit Team Member', 'team_member' ),
-		'update_item'           => __( 'Update Team Member', 'team_member' ),
-		'view_item'             => __( 'View Item', 'team_member' ),
-		'view_items'            => __( 'View Items', 'team_member' ),
-		'search_items'          => __( 'Search Item', 'team_member' ),
-		'not_found'             => __( 'Not found', 'team_member' ),
-		'not_found_in_trash'    => __( 'Not found in Trash', 'team_member' ),
-		'featured_image'        => __( 'Featured Image', 'team_member' ),
-		'set_featured_image'    => __( 'Set featured image', 'team_member' ),
-		'remove_featured_image' => __( 'Remove featured image', 'team_member' ),
-		'use_featured_image'    => __( 'Use as featured image', 'team_member' ),
-		'insert_into_item'      => __( 'Insert into item', 'team_member' ),
-		'uploaded_to_this_item' => __( 'Uploaded to this item', 'team_member' ),
-		'items_list'            => __( 'Items list', 'team_member' ),
-		'items_list_navigation' => __( 'Items list navigation', 'team_member' ),
-		'filter_items_list'     => __( 'Filter items list', 'team_member' ),
-	);
-	$args = array(
-		'label'                 => __( 'Team Member', 'team_member' ),
-		'description'           => __( 'Team Member profiles', 'team_member' ),
-		'labels'                => $labels,
-		'supports'              => array( 'title', 'thumbnail' ),
-		'taxonomies'            => array( 'category' ),
-		'hierarchical'          => false,
-		'public'                => true,
-		'show_ui'               => true,
-		'show_in_menu'          => true,
-		'menu_position'         => 20,
-		'menu_icon'             => 'dashicons-businessperson',
-		'show_in_admin_bar'     => true,
-		'show_in_nav_menus'     => true,
-		'can_export'            => true,
-		'has_archive'           => true,
-		'exclude_from_search'   => false,
-		'publicly_queryable'    => true,
-		'capability_type'       => 'page',
-	);
-	register_post_type( 'team_member', $args );
-
-}
-add_action( 'init', 'team_member', 0 );
-
-// Register Custom Post Type
-function events() {
-
-	$labels = array(
-		'name'                  => _x( 'Events', 'Post Type General Name', 'events' ),
-		'singular_name'         => _x( 'Events', 'Post Type Singular Name', 'events' ),
-		'menu_name'             => __( 'Events', 'events' ),
-		'name_admin_bar'        => __( 'Events', 'events' ),
-		'archives'              => __( 'Item Archives', 'events' ),
-		'attributes'            => __( 'Item Attributes', 'events' ),
-		'parent_item_colon'     => __( 'Parent Item:', 'events' ),
-		'all_items'             => __( 'All Items', 'events' ),
-		'add_new_item'          => __( 'Add New Item', 'events' ),
-		'add_new'               => __( 'Add New Event', 'events' ),
-		'new_item'              => __( 'New Event', 'events' ),
-		'edit_item'             => __( 'Edit Event', 'events' ),
-		'update_item'           => __( 'Update Event', 'events' ),
-		'view_item'             => __( 'View Item', 'events' ),
-		'view_items'            => __( 'View Items', 'events' ),
-		'search_items'          => __( 'Search Item', 'events' ),
-		'not_found'             => __( 'Not found', 'events' ),
-		'not_found_in_trash'    => __( 'Not found in Trash', 'events' ),
-		'featured_image'        => __( 'Featured Image', 'events' ),
-		'set_featured_image'    => __( 'Set featured image', 'events' ),
-		'remove_featured_image' => __( 'Remove featured image', 'events' ),
-		'use_featured_image'    => __( 'Use as featured image', 'events' ),
-		'insert_into_item'      => __( 'Insert into item', 'events' ),
-		'uploaded_to_this_item' => __( 'Uploaded to this item', 'events' ),
-		'items_list'            => __( 'Items list', 'events' ),
-		'items_list_navigation' => __( 'Items list navigation', 'events' ),
-		'filter_items_list'     => __( 'Filter items list', 'events' ),
-	);
-	$args = array(
-		'label'                 => __( 'Events', 'events' ),
-		'description'           => __( 'Events', 'events' ),
-		'labels'                => $labels,
-		'supports'              => array( 'title', 'thumbnail', 'editor' ),
-		'taxonomies'            => array( 'category' ),
-		'hierarchical'          => false,
-		'public'                => true,
-		'show_ui'               => true,
-		'show_in_menu'          => true,
-		'menu_position'         => 20,
-		'menu_icon'             => 'dashicons-businessperson',
-		'show_in_admin_bar'     => true,
-		'show_in_nav_menus'     => true,
-		'can_export'            => true,
-		'has_archive'           => true,
-		'exclude_from_search'   => false,
-		'publicly_queryable'    => true,
-		'capability_type'       => 'post',
-	);
-	register_post_type( 'events', $args );
-
-}
-add_action( 'init', 'events', 0 );
 //CUSTOM LOGIN
 include_once( get_stylesheet_directory() .'/modules/admin/custom_login.php');
 
@@ -901,8 +780,16 @@ include_once( get_stylesheet_directory() .'/modules/admin/custom_login.php');
 include_once( get_stylesheet_directory() .'/modules/icons/logos.php');
 include_once( get_stylesheet_directory() .'/modules/icons/icons.php');
 
-//INVESTORS CONTENT
-// include_once( get_stylesheet_directory() .'/modules/CPTs/investors_content.php');
+
+function backgroundWave() {
+    echo '<svg width="49" height="42" viewBox="0 0 49 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path id="outer" d="M37.549 2.50755C36.6569 0.956289 35.0039 0 33.2145 0H14.923C13.1336 0 11.4805 0.956291 10.5885 2.50755L1.43269 18.4299C0.545616 19.9726 0.545308 21.8705 1.43188 23.4134L10.5888 39.3497C11.4806 40.9018 13.1341 41.8587 14.9241 41.8587H33.2134C35.0034 41.8587 36.6569 40.9018 37.5487 39.3497L46.7056 23.4134C47.5922 21.8705 47.5919 19.9726 46.7048 18.4299L37.549 2.50755Z" fill="white"/>
+    <path  id="inner" d="M31.0039 10.3438H34.4512L26.9219 18.9473L35.7793 30.6562H28.8457L23.4111 23.5566L17.2002 30.6562H13.748L21.7998 21.4521L13.3086 10.3438H20.418L25.3252 16.833L31.0039 10.3438ZM29.793 28.5957H31.7022L19.3779 12.2969H17.3271L29.793 28.5957Z" fill="#2C237B"/>
+    </svg>
+    
+    ';
+  }
+
 
 
 //https://docs.gravityforms.com/gform_submit_button/

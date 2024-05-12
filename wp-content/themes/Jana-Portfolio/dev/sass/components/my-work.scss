@@ -1,6 +1,14 @@
-.my-work-inner {
-    .col-left, .col-right {
-        flex: 0 0 50%;
+.my-work {
+    gap: 75px;
+    .my-work-inner {
+        .col-left, .col-right {
+            flex: 0 0 50%;
+        }
+        .img {
+            width: 490px;
+            height: 355px;
+        }
     }
 }
+
 
