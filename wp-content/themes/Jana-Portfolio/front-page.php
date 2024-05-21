@@ -21,8 +21,8 @@ get_header(); ?>
 <div class="content-rows site-bounds content">
         <?php get_template_part( '/components/hero' ); ?>
         <?php get_template_part( '/components/my-work' ); ?>
-        <section id="mySkills">My Skills</section>
-        <section id="sectionThree">Contact</section>
+        <?php get_template_part( '/components/skillset' ); ?>
+        <?php get_template_part( '/components/form' ); ?>
     </div>
 </main>
 

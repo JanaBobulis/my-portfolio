@@ -10,6 +10,16 @@
       $(".header").removeClass("scrolled");
     }
   });
+  setTimeout(function () {
+    var skillTagsContainer = $('.skillset-tags');
+    var skillTags = skillTagsContainer.html();
+    var tagsArray = skillTags.split(" ");
+    var testArray = Array.from(tagsArray);
+    skillTagsContainer.remove();
+    testArray.map(function (name) {
+      return $('.skillset-right').append('<span class="skill">' + name + '</span>');
+    });
+  }, 500);
 })(jQuery, void 0);
 
 //lenis
@@ -18,9 +28,11 @@ var lenis = new Lenis({
   smooth: true,
   direction: "vertical"
 });
-lenis.on('scroll', function (e) {
-  console.log(e);
-});
+
+// lenis.on('scroll', (e) => {
+//   console.log(e)
+// })
+
 function raf(time) {
   lenis.raf(time);
   requestAnimationFrame(raf);

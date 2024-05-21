@@ -1,0 +1,9 @@
+.skillset-left, .skillset-right {
+    flex: 0 0 50%;
+    gap: 5px;
+    .skill {
+        background-color: $blue;
+        color: white;
+        padding: 5px;
+    }
+}

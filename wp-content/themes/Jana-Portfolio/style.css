@@ -66,6 +66,20 @@
   height: 355px;
 }
 
+.skillset-left, .skillset-right {
+  flex: 0 0 50%;
+  gap: 5px;
+}
+.skillset-left .skill, .skillset-right .skill {
+  background-color: #0300A9;
+  color: white;
+  padding: 5px;
+}
+
+.contact-left, .contact-right {
+  flex: 0 0 50%;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;

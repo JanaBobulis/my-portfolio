@@ -6,8 +6,18 @@
     } else {
         $(".header").removeClass("scrolled");
     }
+    
 });
-
+setTimeout(() => {
+  var skillTagsContainer = $('.skillset-tags');
+  var skillTags = skillTagsContainer.html()
+  var tagsArray = skillTags.split(" ");
+  let testArray = Array.from(tagsArray);
+  skillTagsContainer.remove()
+  testArray.map(function(name) {
+    return $('.skillset-right').append('<span class="skill">' + name + '</span>');
+ });
+}, 500);
 
 })(jQuery, this)
 
@@ -18,9 +28,9 @@ const lenis = new Lenis({
   direction: "vertical"
 })
 
-lenis.on('scroll', (e) => {
-  console.log(e)
-})
+// lenis.on('scroll', (e) => {
+//   console.log(e)
+// })
 
 function raf(time) {
   lenis.raf(time)
